@@ -109,14 +109,20 @@
       flex: 0 0 auto;
       padding: 14px 18px;
       text-decoration: none;
-      color: #555;
       font-size: 13px;
       font-weight: 600;
       white-space: nowrap;
       border-bottom: 3px solid transparent;
       transition: all 0.2s;
     }
-    nav a:hover, nav a.active { color: #1a73e8; border-bottom-color: #1a73e8; }
+    nav a.nav-blue   { color: #1a73e8; }
+    nav a.nav-orange { color: #e67e22; }
+    nav a.nav-green  { color: #16a085; }
+    nav a.nav-dark   { color: #2c3e50; }
+    nav a.nav-blue:hover,   nav a.nav-blue.active   { border-bottom-color: #1a73e8; background: #eaf2ff; }
+    nav a.nav-orange:hover, nav a.nav-orange.active { border-bottom-color: #e67e22; background: #fef5e7; }
+    nav a.nav-green:hover,  nav a.nav-green.active  { border-bottom-color: #16a085; background: #e8f8f5; }
+    nav a.nav-dark:hover,   nav a.nav-dark.active   { border-bottom-color: #2c3e50; background: #f0f2f5; }
 
     main { max-width: 760px; margin: 0 auto; padding: 24px 16px 60px; }
 
@@ -250,11 +256,11 @@
 </header>
 
 <nav>
-  <a href="#about">आपल्याबद्दल</a>
-  <a href="#fulltime">फुल-टाइम</a>
-  <a href="#parttime">पार्ट-टाइम</a>
-  <a href="#lifetime">लाइफटाइम</a>
-  <a href="#compare">तुलना</a>
+  <a href="#about"    class="nav-blue">आपल्याबद्दल</a>
+  <a href="#fulltime" class="nav-blue">🔵 फुल-टाइम</a>
+  <a href="#parttime" class="nav-orange">🟠 पार्ट-टाइम</a>
+  <a href="#lifetime" class="nav-green">🟢 लाइफटाइम</a>
+  <a href="#compare"  class="nav-dark">⚖️ तुलना</a>
 </nav>
 
 <main>
