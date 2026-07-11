@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KrishiAdat — फील्ड सेल्स पार्टनर</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f6f9;
+      color: #1a1a1a;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1a73e8, #0d47a1);
+      color: white;
+      padding: 36px 20px 28px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    header p {
+      margin-top: 8px;
+      font-size: 14px;
+      opacity: 0.85;
+    }
+
+    nav {
+      display: flex;
+      overflow-x: auto;
+      background: #fff;
+      border-bottom: 2px solid #e8eaed;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      flex: 0 0 auto;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: #555;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+    }
+    nav a:hover, nav a.active { color: #1a73e8; border-bottom-color: #1a73e8; }
+
+    main { max-width: 760px; margin: 0 auto; padding: 24px 16px 60px; }
+
+    section { margin-bottom: 40px; }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .blue  { color: #1a73e8; border-color: #1a73e8; }
+    .orange{ color: #e67e22; border-color: #e67e22; }
+    .green { color: #16a085; border-color: #16a085; }
+    .red   { color: #c0392b; border-color: #c0392b; }
+
+    p { margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+      font-size: 14px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    th {
+      background: #1a73e8;
+      color: white;
+      padding: 11px 13px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 10px 13px;
+      border-bottom: 1px solid #e8eaed;
+      background: #fff;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f8f9ff; }
+
+    .orange-header th { background: #e67e22; }
+    .green-header  th { background: #16a085; }
+    .dark-header   th { background: #2c3e50; }
+
+    .highlight-box {
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      font-size: 14px;
+    }
+    .highlight-box.green  { background: #e8f8f5; border-left: 4px solid #16a085; color: #0d6b5a; }
+    .highlight-box.orange { background: #fef5e7; border-left: 4px solid #e67e22; color: #784212; }
+    .highlight-box.red    { background: #fdedec; border-left: 4px solid #c0392b; color: #7b241c; }
+    .highlight-box.blue   { background: #eaf2ff; border-left: 4px solid #1a73e8; color: #1a3a6e; }
+
+    .bullet-list { padding-left: 20px; margin: 10px 0 16px; }
+    .bullet-list li { margin-bottom: 6px; }
+    .bullet-list li.ok  { color: #1e8b4c; list-style: none; padding-left: 4px; }
+    .bullet-list li.ok::before  { content: "✓  "; font-weight: 700; }
+    .bullet-list li.bad { color: #c0392b; list-style: none; padding-left: 4px; }
+    .bullet-list li.bad::before { content: "✗  "; font-weight: 700; }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+    .badge.blue   { background: #e8f0fe; color: #1a73e8; }
+    .badge.orange { background: #fef3e2; color: #e67e22; }
+    .badge.green  { background: #e8f8f5; color: #16a085; }
+
+    .big-number {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1a73e8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 13px;
+      color: #888;
+      border-top: 1px solid #e8eaed;
+    }
+    footer a { color: #1a73e8; text-decoration: none; }
+
+    @media (max-width: 480px) {
+      header h1 { font-size: 20px; }
+      table { font-size: 13px; }
+      td, th { padding: 9px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🌾 KrishiAdat</h1>
+  <p>फील्ड सेल्स पार्टनर — मानधन व अटी</p>
+</header>
+
+<nav>
+  <a href="#about">आपल्याबद्दल</a>
+  <a href="#fulltime">फुल-टाइम</a>
+  <a href="#parttime">पार्ट-टाइम</a>
+  <a href="#lifetime">लाइफटाइम</a>
+  <a href="#compare">तुलना</a>
+</nav>
+
+<main>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-title blue">📱 आपल्याबद्दल</div>
+    <div class="card">
+      <p>KrishiAdat हे महाराष्ट्रातील अडत दुकानदारांसाठी खास बनवलेले डिजिटल अॅप आहे. यामुळे दुकानदारांचे रोजचे बिलिंग, शेतकऱ्यांचे हिशेब, आणि व्यवहार अगदी सोपे होतात. कागदाचा गोंधळ संपतो, वेळ वाचतो आणि हिशेब पक्का राहतो.</p>
+      <p>आम्ही आता नांदेड जिल्ह्यातील तालुक्यांमध्ये हे अॅप पोहोचवायचे आहे. यासाठी आम्हाला एक विश्वासू, मेहनती आणि स्थानिक नेटवर्क असलेला फील्ड पार्टनर हवा आहे.</p>
+    </div>
+
+    <div class="section-title blue">💰 दुकानदारांसाठी किंमत</div>
+    <table>
+      <thead><tr><th>प्लॅन</th><th>लॉन्च ऑफर (पहिले वर्ष)</th><th>नेहमीची किंमत</th></tr></thead>
+      <tbody>
+        <tr><td>वार्षिक</td><td>₹12,000/वर्ष</td><td>₹24,000/वर्ष</td></tr>
+        <tr><td>मासिक</td><td>₹1,250/महिना</td><td>₹2,500/महिना</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight-box blue">🎁 पहिल्या वर्षात <strong>50% सूट</strong> आणि <strong>15 दिवस मोफत ट्रायल</strong></div>
+  </section>
+
+  <!-- FULL TIME -->
+  <section id="fulltime">
+    <div class="section-title blue">🕐 फुल-टाइम ऑफर <span class="badge blue">पूर्ण वेळ</span></div>
+
+    <div class="card">
+      <table>
+        <thead><tr><th>घटक</th><th>रक्कम</th></tr></thead>
+        <tbody>
+          <tr><td>निश्चित मासिक पगार</td><td><strong>₹7,000/महिना</strong></td></tr>
+          <tr><td>पेट्रोल भत्ता</td><td><strong>₹5,000/महिना</strong></td></tr>
+          <tr><td><strong>एकूण गॅरंटी</strong></td><td><strong>₹12,000/महिना</strong></td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>विक्री कमिशन:</strong></p>
+      <table>
+        <thead><tr><th>विक्री प्रकार</th><th>कमिशन</th></tr></thead>
+        <tbody>
+          <tr><td>वार्षिक प्लॅन (₹12,000)</td><td><strong>33% = ₹4,000</strong> — एकदाच</td></tr>
+          <tr><td>मासिक प्लॅन (₹1,250/महिना)</td><td><strong>25% = ₹312/महिना</strong> — 12 महिन्यांपर्यंत</td></tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box red">📌 कमिशन फक्त पहिल्या वर्षासाठी प्रत्येक ग्राहकावर. दुकानदाराने पैसे दिले की लगेच कमिशन मिळेल.</div>
+      <div class="highlight-box blue">📊 उदाहरण — महिन्यात 3 वार्षिक विक्री केल्यास: ₹12,000 + ₹12,000 = <strong>₹24,000 त्या महिन्यात</strong></div>
+    </div>
+
+    <div class="section-title blue">🏢 कंपनीकडून काय मिळेल</div>
+    <div class="card">
+      <ul class="bullet-list">
+        <li>टॅबलेट</li>
+        <li>प्रिंटर</li>
+        <li>पेट्रोल भत्ता ₹5,000/महिना</li>
+        <li>अॅपचे संपूर्ण प्रशिक्षण</li>
+      </ul>
+    </div>
+
+    <div class="section-title blue">📋 आमच्या अपेक्षा</div>
+    <div class="card">
+      <table>
+        <thead><tr><th>काम</th><th>तपशील</th></tr></thead>
+        <tbody>
+          <tr><td>आठवड्यातील दिवस</td><td>सोमवार ते शनिवार — 6 दिवस</td></tr>
+          <tr><td>फील्ड भेटी</td><td>आठवड्यातून 4 दिवस</td></tr>
+          <tr><td>फॉलो-अप</td><td>आठवड्यातून 2 दिवस — फोन, WhatsApp</td></tr>
+          <tr><td>दररोज किमान भेटी</td><td>4 दुकाने</td></tr>
+          <tr><td>दरमहा भेटी</td><td>किमान 64</td></tr>
+          <tr><td>दरमहा ट्रायल</td><td>किमान 8</td></tr>
+          <tr><td>दरमहा विक्री</td><td>किमान 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-title blue">📝 नियम व अटी</div>
+    <div class="card">
+      <p><strong>1. Google Form</strong></p>
+      <p>प्रत्येक दुकान भेटीनंतर Google Form भरणे अनिवार्य. यात भरायचे:</p>
+      <ul class="bullet-list">
+        <li>दुकानाचे नाव</li>
+        <li>मालकाचे नाव</li>
+        <li>मोबाइल नंबर</li>
+        <li>तालुका / गाव</li>
+        <li>भेटीची तारीख</li>
+        <li>निकाल (इंटरेस्टेड / नाही / ट्रायल / विक्री)</li>
+        <li>पुढची भेट कधी</li>
+      </ul>
+
+      <p><strong>2. फोटो पुरावा</strong></p>
+      <p>प्रत्येक फील्ड दिवशी एक फोटो WhatsApp वर पाठवायचा — दुकानासमोर किंवा आत उभे राहून.</p>
+
+      <p><strong>3. साप्ताहिक कॉल</strong></p>
+      <p>दर शनिवारी संध्याकाळी 15 मिनिटांचा रिपोर्टिंग कॉल.</p>
+
+      <p><strong>4. कमिशन नियम</strong></p>
+      <ul class="bullet-list">
+        <li>दुकानदाराने पैसे दिल्यावरच कमिशन मिळेल</li>
+        <li>प्रत्येक ग्राहकावर फक्त पहिल्या वर्षासाठी कमिशन</li>
+        <li>मासिक ग्राहकावर 12 महिन्यांपर्यंत दरमहा कमिशन</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PART TIME -->
+  <section id="parttime">
+    <div class="section-title orange">🌅 पार्ट-टाइम ऑफर <span class="badge orange">लवचिक वेळ</span></div>
+
+    <div class="card">
+      <p>जर तुम्हाला फुल-टाइम जॉईन करणे शक्य नसेल तर काळजी नाही. पार्ट-टाइममध्ये निश्चित पगार नाही, पण प्रत्येक भेटीचे पैसे मिळतात आणि विक्रीवर जास्त कमिशन मिळते.</p>
+
+      <table class="orange-header">
+        <thead><tr><th>घटक</th><th>रक्कम</th></tr></thead>
+        <tbody>
+          <tr><td>निश्चित पगार</td><td>₹0</td></tr>
+          <tr><td>भेट भत्ता</td><td><strong>₹100 प्रति भेट</strong> (Google Form भरल्यावरच)</td></tr>
+          <tr><td>वार्षिक प्लॅन कमिशन</td><td><strong>40% = ₹4,800</strong> — एकदाच</td></tr>
+          <tr><td>मासिक प्लॅन कमिशन</td><td><strong>30% = ₹375/महिना</strong> — 12 महिन्यांपर्यंत</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-title orange">📍 भेट भत्त्याचा नियम</div>
+    <div class="card">
+      <p>₹100 फक्त तेव्हाच मिळेल जेव्हा Google Form मध्ये खालील माहिती पूर्णपणे भरलेली असेल:</p>
+      <ul class="bullet-list">
+        <li>दुकानाचे नाव</li>
+        <li>मालकाचे नाव</li>
+        <li>मोबाइल नंबर</li>
+        <li>निकाल</li>
+      </ul>
+      <div class="highlight-box red">Form नाही → त्या भेटीचे ₹100 नाही.</div>
+    </div>
+
+    <div class="section-title orange">📈 कमाईची शक्यता</div>
+    <div class="card">
+      <table class="orange-header">
+        <thead><tr><th>महिन्यात विक्री</th><th>कमिशन</th><th>भेट भत्ता (40 भेटी)</th><th>एकूण</th></tr></thead>
+        <tbody>
+          <tr><td>0 विक्री</td><td>₹0</td><td>₹4,000</td><td>₹4,000</td></tr>
+          <tr><td>1 वार्षिक</td><td>₹4,800</td><td>₹4,000</td><td><strong>₹8,800</strong></td></tr>
+          <tr><td>2 वार्षिक</td><td>₹9,600</td><td>₹4,000</td><td><strong>₹13,600</strong></td></tr>
+          <tr><td>3 वार्षिक</td><td>₹14,400</td><td>₹4,000</td><td><strong>₹18,400</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-box orange">💡 1 विक्री = संपूर्ण महिन्याचा भेट भत्ता वसूल + ₹800 नफा.</div>
+    </div>
+  </section>
+
+  <!-- LIFETIME -->
+  <section id="lifetime">
+    <div class="section-title green">♾️ लाइफटाइम पार्टनर ऑफर <span class="badge green">आजीवन</span></div>
+
+    <div class="card">
+      <p>लाइफटाइम ऑफरमध्ये कोणताही पगार नाही, पेट्रोल नाही, भेट भत्ता नाही. फक्त एकच गोष्ट — तुम्ही जो ग्राहक आणता, तो जोपर्यंत KrishiAdat वापरतो, तोपर्यंत तुम्हाला कमिशन मिळत राहते. दरवर्षी. आयुष्यभर.</p>
+      <p><strong>तुम्ही फक्त एकदा मेहनत करा — ग्राहक आणा. बाकी पैसे आपोआप येत राहतात.</strong></p>
+    </div>
+
+    <div class="section-title green">💼 मानधन रचना</div>
+    <div class="card">
+      <table class="green-header">
+        <thead><tr><th>घटक</th><th>रक्कम</th></tr></thead>
+        <tbody>
+          <tr><td>निश्चित पगार</td><td>₹0</td></tr>
+          <tr><td>पेट्रोल भत्ता</td><td>₹0</td></tr>
+          <tr><td>भेट भत्ता</td><td>₹0</td></tr>
+          <tr><td>पहिल्या वर्षाचे कमिशन (₹12,000)</td><td><strong>15% = ₹1,800</strong> — एकदाच</td></tr>
+          <tr><td>नूतनीकरण — वर्ष 2 पुढे (₹24,000)</td><td><strong>10% = ₹2,400/वर्ष — दरवर्षी, आजीवन</strong></td></tr>
+          <tr><td>मासिक प्लॅन लॉन्च (₹1,250/महिना)</td><td><strong>10% = ₹125/महिना — आजीवन</strong></td></tr>
+          <tr><td>मासिक प्लॅन नेहमी (₹2,500/महिना)</td><td><strong>10% = ₹250/महिना — आजीवन</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-title green">📊 निष्क्रिय उत्पन्न — वर्षानुवर्षे</div>
+    <div class="card">
+      <table class="green-header">
+        <thead><tr><th>आणलेले ग्राहक</th><th>वर्ष 1</th><th>वर्ष 2</th><th>वर्ष 3</th><th>3 वर्षांत एकूण</th></tr></thead>
+        <tbody>
+          <tr><td>5 ग्राहक</td><td>₹9,000</td><td>₹12,000</td><td>₹12,000</td><td><strong>₹33,000</strong></td></tr>
+          <tr><td>10 ग्राहक</td><td>₹18,000</td><td>₹24,000</td><td>₹24,000</td><td><strong>₹66,000</strong></td></tr>
+          <tr><td>20 ग्राहक</td><td>₹36,000</td><td>₹48,000</td><td>₹48,000</td><td><strong>₹1,32,000</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-box green">🌱 वर्ष 2 पासून कोणतीही मेहनत नाही — ग्राहक renew करतो आणि तुम्हाला पैसे येतात.</div>
+    </div>
+
+    <div class="section-title red">⚠️ एक महत्त्वाची अट</div>
+    <div class="card">
+      <p>ग्राहकाने KrishiAdat बंद केले (renewal नाही) तर त्या ग्राहकाचे कमिशन त्याच महिन्यापासून बंद होईल.</p>
+      <ul class="bullet-list">
+        <li class="ok">ग्राहक सक्रिय → कमिशन चालू</li>
+        <li class="bad">ग्राहकाने बंद केले → त्या ग्राहकाचे कमिशन बंद</li>
+      </ul>
+      <div class="highlight-box green">हे तुम्हाला आपोआप प्रेरित करते की ग्राहकाने अॅप वापरावे — कारण तुमची कमाई त्याच्या समाधानावर अवलंबून आहे.</div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section id="compare">
+    <div class="section-title blue">⚖️ तिन्ही ऑफरची तुलना</div>
+    <div class="card">
+      <table class="dark-header">
+        <thead><tr><th>घटक</th><th>फुल-टाइम</th><th>पार्ट-टाइम</th><th>लाइफटाइम</th></tr></thead>
+        <tbody>
+          <tr><td>निश्चित पगार</td><td>₹7,000/महिना</td><td>₹0</td><td>₹0</td></tr>
+          <tr><td>पेट्रोल/भेट भत्ता</td><td>₹5,000/महिना</td><td>₹100/भेट</td><td>₹0</td></tr>
+          <tr><td>वार्षिक कमिशन</td><td>₹4,000 (एकदाच)</td><td>₹4,800 (एकदाच)</td><td>₹1,800 + ₹2,400/वर्ष आजीवन</td></tr>
+          <tr><td>मासिक कमिशन</td><td>₹312 × 12</td><td>₹375 × 12</td><td>₹125–250/महिना आजीवन</td></tr>
+          <tr><td>गॅरंटी</td><td>✅ ₹12,000/महिना</td><td>❌ नाही</td><td>❌ नाही</td></tr>
+          <tr><td>दीर्घकालीन फायदा</td><td>मर्यादित</td><td>मर्यादित</td><td>सर्वाधिक</td></tr>
+          <tr><td>कोणासाठी योग्य</td><td>पूर्ण वेळ देणारा</td><td>शेतीसोबत करणारा</td><td>दीर्घकालीन विचार करणारा</td></tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box blue">
+        <strong>निर्णय तुमचा — आम्ही तिन्हीसाठी तयार आहोत.</strong><br/>
+        फुल-टाइममध्ये गॅरंटी आहे पण जबाबदारी जास्त. पार्ट-टाइममध्ये स्वातंत्र्य आहे. लाइफटाइममध्ये एकदा मेहनत करा, वर्षानुवर्षे कमाई करा.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>🌾 <strong>KrishiAdat</strong> — Trusted by farmers. Built for adat.</p>
+  <p style="margin-top:6px;"><a href="https://vallixo-agri-adat.vercel.app">vallixo-agri-adat.vercel.app</a></p>
+</footer>
+
+</body>
+</html>
