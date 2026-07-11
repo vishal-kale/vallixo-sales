@@ -7,6 +7,70 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    #password-screen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #1a73e8, #0d47a1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    #password-screen.hidden { display: none; }
+    .pw-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 36px 28px;
+      width: 100%;
+      max-width: 340px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .pw-box .logo { font-size: 40px; margin-bottom: 8px; }
+    .pw-box h2 { font-size: 20px; color: #1a73e8; margin-bottom: 4px; }
+    .pw-box p  { font-size: 13px; color: #777; margin-bottom: 22px; }
+    .pw-box input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e8eaed;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+      text-align: center;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+      transition: border 0.2s;
+    }
+    .pw-box input:focus { border-color: #1a73e8; }
+    .pw-box input.error { border-color: #c0392b; animation: shake 0.3s; }
+    .pw-box button {
+      width: 100%;
+      padding: 13px;
+      background: #1a73e8;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .pw-box button:hover { background: #1558b0; }
+    .pw-error {
+      color: #c0392b;
+      font-size: 13px;
+      margin-top: 10px;
+      min-height: 18px;
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-6px); }
+      75%      { transform: translateX(6px); }
+    }
+
+    #main-content { display: none; }
+    #main-content.visible { display: block; }
+
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       background: #f4f6f9;
@@ -164,6 +228,21 @@
   </style>
 </head>
 <body>
+
+<!-- Password Screen -->
+<div id="password-screen">
+  <div class="pw-box">
+    <div class="logo">🌾</div>
+    <h2>KrishiAdat</h2>
+    <p>हे पेज पाहण्यासाठी पासवर्ड टाका</p>
+    <input type="password" id="pw-input" placeholder="Password" maxlength="20"
+      onkeydown="if(event.key==='Enter') checkPassword()" />
+    <button onclick="checkPassword()">आत जा →</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+
+<div id="main-content">
 
 <header>
   <h1>🌾 KrishiAdat</h1>
@@ -405,6 +484,35 @@
   <p>🌾 <strong>KrishiAdat</strong> — Trusted by farmers. Built for adat.</p>
   <p style="margin-top:6px;"><a href="https://vallixo-agri-adat.vercel.app">vallixo-agri-adat.vercel.app</a></p>
 </footer>
+
+</div> <!-- end #main-content -->
+
+<script>
+  const PASS = 'test@1234';
+
+  function checkPassword() {
+    const input = document.getElementById('pw-input');
+    const error = document.getElementById('pw-error');
+    if (input.value === PASS) {
+      sessionStorage.setItem('kaSalesAuth', '1');
+      document.getElementById('password-screen').classList.add('hidden');
+      document.getElementById('main-content').classList.add('visible');
+      error.textContent = '';
+    } else {
+      input.classList.add('error');
+      error.textContent = 'चुकीचा पासवर्ड. पुन्हा प्रयत्न करा.';
+      setTimeout(() => input.classList.remove('error'), 400);
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  // Keep unlocked within same session
+  if (sessionStorage.getItem('kaSalesAuth') === '1') {
+    document.getElementById('password-screen').classList.add('hidden');
+    document.getElementById('main-content').classList.add('visible');
+  }
+</script>
 
 </body>
 </html>
